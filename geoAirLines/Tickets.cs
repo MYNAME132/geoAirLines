@@ -20,29 +20,76 @@ namespace geoAirLines
 
         private void FillPassenger()
         {
-            Con.Open();
-            SqlCommand cmd = new SqlCommand("select PassId from [dbo].[passenegerTb]", Con);
-            SqlDataReader rdr = cmd.ExecuteReader();
-            DataTable dt = new DataTable();
-            dt.Columns.Add("PassId", typeof(int));
-            dt.Load(rdr);
-            PassengerID.ValueMember = "PassId";
-            PassengerID.DataSource = dt;
+            try
+            {
+                // Open the connection
+                if (Con.State == ConnectionState.Closed)
+                {
+                    Con.Open();
+                }
 
-            Con.Close();
+                // Create the command to fetch passenger IDs
+                SqlCommand cmd = new SqlCommand("SELECT PassId FROM [dbo].[passenegerTb]", Con);
+                SqlDataReader rdr = cmd.ExecuteReader();
+
+                // Create a DataTable to hold the results
+                DataTable dt = new DataTable();
+                dt.Columns.Add("PassId", typeof(int));
+                dt.Load(rdr); // Load the data from the reader into the DataTable
+
+                // Bind the DataTable to the PassengerID dropdown
+                PassengerID.ValueMember = "PassId";
+                PassengerID.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                // Show an error message if an exception occurs
+                MessageBox.Show("Error fetching passengers: " + ex.Message);
+            }
+            finally
+            {
+                // Ensure the connection is closed
+                if (Con.State == ConnectionState.Open)
+                {
+                    Con.Close();
+                }
+            }
         }
 
 
         private void FillTocketsGrid()
         {
-            Con.Open();
-            string query = "select * from  [dbo].[TicketTable]";
-            SqlDataAdapter sda = new SqlDataAdapter(query, Con);
-            SqlCommandBuilder builder = new SqlCommandBuilder(sda);
-            var ds = new DataSet();
-            sda.Fill(ds);
-            TicketDGV.DataSource = ds.Tables[0];
-            Con.Close();
+            try
+            {
+                // Open the connection
+                if (Con.State == ConnectionState.Closed)
+                {
+                    Con.Open();
+                }
+
+                // Define the query to fetch ticket data
+                string query = "SELECT * FROM [dbo].[TicketTable]";
+                SqlDataAdapter sda = new SqlDataAdapter(query, Con);
+                SqlCommandBuilder builder = new SqlCommandBuilder(sda);
+                var ds = new DataSet();
+
+                // Fill the dataset with ticket data
+                sda.Fill(ds);
+                TicketDGV.DataSource = ds.Tables[0]; // Bind the data to the DataGridView
+            }
+            catch (Exception ex)
+            {
+                // Show an error message if an exception occurs
+                MessageBox.Show("Error fetching tickets: " + ex.Message);
+            }
+            finally
+            {
+                // Ensure the connection is closed
+                if (Con.State == ConnectionState.Open)
+                {
+                    Con.Close();
+                }
+            }
         }
 
         private void FetchPassenger()
@@ -162,14 +209,21 @@ namespace geoAirLines
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show($"TicketID: {TicketID.Text}, Amount: {Amount.Text}, PassengerID: {PassengerID.SelectedValue}, FlightCode: {FlightCode.Text}");
+            // Get the updated values from UI
+            string ticketId = TicketID.Text.Trim();
+            string flightCode = FlightCode.Text.Trim();
+            string passengerId = PassengerID.SelectedValue?.ToString();
+            string passengerName = PassengerName.Text;
+            string passport = Passport.Text;
+            string gender = Gender.Text;
+            string nationality = Nationality.Text;
+            string passAddress = PassengerAdd.Text;
+            int amount;
 
-            if (string.IsNullOrWhiteSpace(TicketID.Text) ||
-                string.IsNullOrWhiteSpace(Amount.Text) ||
-                PassengerID.SelectedValue == null ||
-                FlightCode.SelectedValue == null)
+            // Validate if TicketID and FlightCode are provided
+            if (string.IsNullOrWhiteSpace(ticketId) || string.IsNullOrWhiteSpace(flightCode) || !int.TryParse(Amount.Text, out amount))
             {
-                MessageBox.Show("Please fill in all required fields and ensure selections are valid.");
+                MessageBox.Show("Please enter valid Ticket ID, Flight Code, and Amount.");
                 return;
             }
 
@@ -177,26 +231,75 @@ namespace geoAirLines
             {
                 Con.Open();
 
-                string query = "INSERT INTO [dbo].[TicketTable] " +
-                               "(TicketId, FlightCode, PassID, PassName, Passport, Gender, Nationality, PassAdd, Amount) " +
-                               "VALUES (@TicketId, @FlightCode, @PassID, @PassName, @Passport, @Gender, @Nationality, @PassAdd, @Amount)";
+                // Check if TicketID exists in TicketTable
+                string checkQuery = "SELECT COUNT(1) FROM [dbo].[TicketTable] WHERE TicketId = @TicketId";
+                SqlCommand checkCmd = new SqlCommand(checkQuery, Con);
+                checkCmd.Parameters.AddWithValue("@TicketId", ticketId);
 
-                SqlCommand cmd = new SqlCommand(query, Con);
+                int count = (int)checkCmd.ExecuteScalar();
 
-                cmd.Parameters.AddWithValue("@TicketId", TicketID.Text);
-                cmd.Parameters.AddWithValue("@FlightCode", FlightCode.SelectedValue.ToString());
-                cmd.Parameters.AddWithValue("@PassID", PassengerID.SelectedValue.ToString());
-                cmd.Parameters.AddWithValue("@PassName", PassengerName.Text);
-                cmd.Parameters.AddWithValue("@Passport", Passport.Text);
-                cmd.Parameters.AddWithValue("@Gender", Gender.Text);
-                cmd.Parameters.AddWithValue("@Nationality", Nationality.Text);
-                cmd.Parameters.AddWithValue("@PassAdd", PassengerAdd.Text);
-                cmd.Parameters.AddWithValue("@Amount", Convert.ToInt32(Amount.Text));
-                cmd.ExecuteNonQuery();
+                if (count > 0)
+                {
+                    // Update the ticket information in TicketTable
+                    string updateQuery = "UPDATE [dbo].[TicketTable] " +
+                                         "SET FlightCode = @FlightCode, PassID = @PassID, PassName = @PassName, " +
+                                         "Passport = @Passport, Gender = @Gender, Nationality = @Nationality, " +
+                                         "PassAdd = @PassAdd, Amount = @Amount " +
+                                         "WHERE TicketId = @TicketId";
 
-                MessageBox.Show("Ticket added successfully");
-                Con.Close();
-                FillTocketsGrid();
+                    SqlCommand updateCmd = new SqlCommand(updateQuery, Con);
+                    updateCmd.Parameters.AddWithValue("@FlightCode", flightCode);
+                    updateCmd.Parameters.AddWithValue("@PassID", passengerId);
+                    updateCmd.Parameters.AddWithValue("@PassName", passengerName);
+                    updateCmd.Parameters.AddWithValue("@Passport", passport);
+                    updateCmd.Parameters.AddWithValue("@Gender", gender);
+                    updateCmd.Parameters.AddWithValue("@Nationality", nationality);
+                    updateCmd.Parameters.AddWithValue("@PassAdd", passAddress);
+                    updateCmd.Parameters.AddWithValue("@Amount", amount);
+                    updateCmd.Parameters.AddWithValue("@TicketId", ticketId);
+
+                    int rowsAffected = updateCmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Ticket updated successfully.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Update failed. Please check the entered details.");
+                    }
+                }
+                else
+                {
+                    // Insert the new ticket information in TicketTable
+                    string insertQuery = "INSERT INTO [dbo].[TicketTable] " +
+                                         "(TicketId, FlightCode, PassID, PassName, Passport, Gender, Nationality, PassAdd, Amount) " +
+                                         "VALUES (@TicketId, @FlightCode, @PassID, @PassName, @Passport, @Gender, @Nationality, @PassAdd, @Amount)";
+
+                    SqlCommand insertCmd = new SqlCommand(insertQuery, Con);
+                    insertCmd.Parameters.AddWithValue("@TicketId", ticketId);
+                    insertCmd.Parameters.AddWithValue("@FlightCode", flightCode);
+                    insertCmd.Parameters.AddWithValue("@PassID", passengerId);
+                    insertCmd.Parameters.AddWithValue("@PassName", passengerName);
+                    insertCmd.Parameters.AddWithValue("@Passport", passport);
+                    insertCmd.Parameters.AddWithValue("@Gender", gender);
+                    insertCmd.Parameters.AddWithValue("@Nationality", nationality);
+                    insertCmd.Parameters.AddWithValue("@PassAdd", passAddress);
+                    insertCmd.Parameters.AddWithValue("@Amount", amount);
+
+                    int rowsInserted = insertCmd.ExecuteNonQuery();
+
+                    if (rowsInserted > 0)
+                    {
+                        MessageBox.Show("New ticket added successfully.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Insertion failed. Please check the entered details.");
+                    }
+                }
+
+                FillTocketsGrid(); // Refresh the grid to reflect the changes
             }
             catch (Exception ex)
             {
@@ -204,10 +307,7 @@ namespace geoAirLines
             }
             finally
             {
-                if (Con.State == ConnectionState.Open)
-                {
-                    Con.Close();
-                }
+                Con.Close();
             }
         }
         private void TicketDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
