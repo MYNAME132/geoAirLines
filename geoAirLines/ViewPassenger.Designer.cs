@@ -48,6 +48,7 @@
             adres = new Label();
             PassAdd = new TextBox();
             PassengerDGV = new DataGridView();
+            button6 = new Button();
             ((System.ComponentModel.ISupportInitialize)PassengerDGV).BeginInit();
             SuspendLayout();
             // 
@@ -270,11 +271,28 @@
             PassengerDGV.TabIndex = 51;
             PassengerDGV.CellContentClick += PassengerDGV_CellContentClick;
             // 
+            // button6
+            // 
+            button6.BackColor = Color.Red;
+            button6.FlatAppearance.BorderColor = Color.FromArgb(192, 0, 0);
+            button6.FlatAppearance.BorderSize = 2;
+            button6.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
+            button6.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 0, 0);
+            button6.Font = new Font("SuperFrench", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 2);
+            button6.Location = new Point(-2, -4);
+            button6.Name = "button6";
+            button6.Size = new Size(77, 38);
+            button6.TabIndex = 64;
+            button6.Text = "HOME";
+            button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
+            // 
             // ViewPassenger
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(550, 664);
+            Controls.Add(button6);
             Controls.Add(PassengerDGV);
             Controls.Add(adres);
             Controls.Add(PassAdd);
@@ -326,5 +344,6 @@
         private Label adres;
         private TextBox PassAdd;
         private DataGridView PassengerDGV;
+        private Button button6;
     }
 }

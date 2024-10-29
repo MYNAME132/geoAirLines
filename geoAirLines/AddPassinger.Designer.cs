@@ -48,6 +48,7 @@
             button2 = new Button();
             label10 = new Label();
             button3 = new Button();
+            button6 = new Button();
             SuspendLayout();
             // 
             // label4
@@ -262,11 +263,28 @@
             button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
+            // button6
+            // 
+            button6.BackColor = Color.Red;
+            button6.FlatAppearance.BorderColor = Color.FromArgb(192, 0, 0);
+            button6.FlatAppearance.BorderSize = 2;
+            button6.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
+            button6.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 0, 0);
+            button6.Font = new Font("SuperFrench", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 2);
+            button6.Location = new Point(-8, -1);
+            button6.Name = "button6";
+            button6.Size = new Size(77, 38);
+            button6.TabIndex = 64;
+            button6.Text = "HOME";
+            button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
+            // 
             // AddPassinger
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(544, 590);
+            Controls.Add(button6);
             Controls.Add(button3);
             Controls.Add(label10);
             Controls.Add(button2);
@@ -315,5 +333,6 @@
         private Button button2;
         private Label label10;
         private Button button3;
+        private Button button6;
     }
 }

@@ -43,6 +43,7 @@
             FlightCode = new TextBox();
             label2 = new Label();
             label1 = new Label();
+            button6 = new Button();
             SuspendLayout();
             // 
             // button4
@@ -205,11 +206,28 @@
             label1.TabIndex = 46;
             label1.Text = "Georgian AirLines";
             // 
+            // button6
+            // 
+            button6.BackColor = Color.Red;
+            button6.FlatAppearance.BorderColor = Color.FromArgb(192, 0, 0);
+            button6.FlatAppearance.BorderSize = 2;
+            button6.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
+            button6.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 0, 0);
+            button6.Font = new Font("SuperFrench", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 2);
+            button6.Location = new Point(-5, -3);
+            button6.Name = "button6";
+            button6.Size = new Size(77, 38);
+            button6.TabIndex = 63;
+            button6.Text = "HOME";
+            button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
+            // 
             // AddFlight
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(533, 422);
+            Controls.Add(button6);
             Controls.Add(button4);
             Controls.Add(label10);
             Controls.Add(FlightDate);
@@ -249,5 +267,6 @@
         private TextBox FlightCode;
         private Label label2;
         private Label label1;
+        private Button button6;
     }
 }

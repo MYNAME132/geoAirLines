@@ -68,7 +68,20 @@ namespace geoAirLines
 
         private void button2_Click(object sender, EventArgs e)
         {
+            PassId.Text = "";
+            PassName.Text = "";
+            PassportTb.Text = "";
+            PassAd.Text = "";
+            PhoneTb.Text = "";
+            Nationality.Text = "";
+            Gender.Text = "";
+        }
 
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Home home= new Home();
+            home.Show();
+            this.Hide();
         }
     }
 }

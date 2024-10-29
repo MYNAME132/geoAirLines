@@ -79,6 +79,7 @@ namespace geoAirLines
             PassId.Text = "";
             PassName.Text = "";
             Pasport.Text = "";
+            PassAdd.Text = "";
             Gender.SelectedItem = "";
             Nationality.SelectedItem = "";
         }
@@ -107,7 +108,7 @@ namespace geoAirLines
                 SqlCommand cmd = new SqlCommand(query, Con);
 
                 // Set the parameters for the query
-                cmd.Parameters.AddWithValue("@PassId", PassId.Text); 
+                cmd.Parameters.AddWithValue("@PassId", PassId.Text);
                 cmd.Parameters.AddWithValue("@PassName", PassName.Text);
                 cmd.Parameters.AddWithValue("@Passport", Pasport.Text);
                 cmd.Parameters.AddWithValue("@PassAd", PassAdd.Text);
@@ -146,5 +147,11 @@ namespace geoAirLines
             }
         }
 
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Home home = new Home();
+            home.Show();
+            this.Hide();
+        }
     }
 }

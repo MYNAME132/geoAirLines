@@ -46,6 +46,7 @@
             button4 = new Button();
             button3 = new Button();
             button2 = new Button();
+            button6 = new Button();
             ((System.ComponentModel.ISupportInitialize)FlightDVG).BeginInit();
             SuspendLayout();
             // 
@@ -248,12 +249,30 @@
             button2.TabIndex = 20;
             button2.Text = "Reset";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
+            // 
+            // button6
+            // 
+            button6.BackColor = Color.Red;
+            button6.FlatAppearance.BorderColor = Color.FromArgb(192, 0, 0);
+            button6.FlatAppearance.BorderSize = 2;
+            button6.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
+            button6.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 0, 0);
+            button6.Font = new Font("SuperFrench", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 2);
+            button6.Location = new Point(-1, -4);
+            button6.Name = "button6";
+            button6.Size = new Size(77, 38);
+            button6.TabIndex = 64;
+            button6.Text = "HOME";
+            button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
             // 
             // FlightTable
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(552, 679);
+            Controls.Add(button6);
             Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(label10);
@@ -301,5 +320,6 @@
         private Button button4;
         private Button button3;
         private Button button2;
+        private Button button6;
     }
 }

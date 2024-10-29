@@ -58,6 +58,7 @@
             label12 = new Label();
             PassengerAdd = new TextBox();
             TicketID = new TextBox();
+            button6 = new Button();
             ((System.ComponentModel.ISupportInitialize)TicketDGV).BeginInit();
             SuspendLayout();
             // 
@@ -383,11 +384,28 @@
             TicketID.Size = new Size(277, 23);
             TicketID.TabIndex = 104;
             // 
+            // button6
+            // 
+            button6.BackColor = Color.Red;
+            button6.FlatAppearance.BorderColor = Color.FromArgb(192, 0, 0);
+            button6.FlatAppearance.BorderSize = 2;
+            button6.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
+            button6.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 0, 0);
+            button6.Font = new Font("SuperFrench", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 2);
+            button6.Location = new Point(-1, -5);
+            button6.Name = "button6";
+            button6.Size = new Size(77, 38);
+            button6.TabIndex = 105;
+            button6.Text = "HOME";
+            button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
+            // 
             // Tickets
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(603, 773);
+            Controls.Add(button6);
             Controls.Add(TicketID);
             Controls.Add(label12);
             Controls.Add(PassengerAdd);
@@ -459,5 +477,6 @@
         private Label label12;
         private TextBox PassengerAdd;
         private TextBox TicketID;
+        private Button button6;
     }
 }

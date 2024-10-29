@@ -44,7 +44,7 @@ namespace geoAirLines
                           string.IsNullOrWhiteSpace(FlightSeats.Text) ||
                           string.IsNullOrWhiteSpace(FlightDate.Text) ||
                           Destinetion.SelectedItem == null ||
-                          Source.SelectedItem == null) 
+                          Source.SelectedItem == null)
             {
                 MessageBox.Show("Please fill in all fields, including destination and source.");
                 return;
@@ -134,6 +134,22 @@ namespace geoAirLines
             AddFlight AddFlight = new AddFlight();
             AddFlight.Show();
             this.Hide();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Home home = new Home();
+            home.Show();
+            this.Hide();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FlightCode.Text = "";
+            FlightSeats.Text = "";
+            FlightDate.Text = "";
+            Source.Text = "";
+            Destinetion.Text = "";
         }
     }
 }

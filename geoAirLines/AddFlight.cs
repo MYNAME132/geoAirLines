@@ -63,8 +63,15 @@ namespace geoAirLines
 
         private void button4_Click(object sender, EventArgs e)
         {
-            FlightTable FlightTb=new FlightTable();
+            FlightTable FlightTb = new FlightTable();
             FlightTb.Show();
+            this.Hide();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Home home= new Home();
+            home.Show();
             this.Hide();
         }
     }

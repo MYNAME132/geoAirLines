@@ -22,7 +22,7 @@ namespace geoAirLines
         {
             try
             {
-                // Open the connection
+                // Open the connection if it's closed
                 if (Con.State == ConnectionState.Closed)
                 {
                     Con.Open();
@@ -40,6 +40,11 @@ namespace geoAirLines
                 // Bind the DataTable to the PassengerID dropdown
                 PassengerID.ValueMember = "PassId";
                 PassengerID.DataSource = dt;
+
+                // Enable manual entry by changing DropDownStyle and AutoCompleteMode
+                PassengerID.DropDownStyle = ComboBoxStyle.DropDown;
+                PassengerID.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                PassengerID.AutoCompleteSource = AutoCompleteSource.ListItems;
             }
             catch (Exception ex)
             {
@@ -56,6 +61,18 @@ namespace geoAirLines
             }
         }
 
+        private void ResetGrid()
+        {
+            TicketID.Text = "";
+            PassengerAdd.Text = "";
+            PassengerID.Text = "";
+            PassengerName.Text = "";
+            FlightCode.Text = "";
+            Nationality.Text = "";
+            Gender.Text = "";
+            Passport.Text = "";
+            Amount.Text = "";
+        }
 
         private void FillTocketsGrid()
         {
@@ -187,7 +204,7 @@ namespace geoAirLines
             FillPassenger();
             FillFlightCode();
             FillTocketsGrid();
-
+            ResetGrid();
         }
 
         private void label15_Click(object sender, EventArgs e)
@@ -241,13 +258,13 @@ namespace geoAirLines
                 if (count > 0)
                 {
                     // Update the ticket information in TicketTable
-                    string updateQuery = "UPDATE [dbo].[TicketTable] " +
+                    string query = "UPDATE [dbo].[TicketTable] " +
                                          "SET FlightCode = @FlightCode, PassID = @PassID, PassName = @PassName, " +
                                          "Passport = @Passport, Gender = @Gender, Nationality = @Nationality, " +
                                          "PassAdd = @PassAdd, Amount = @Amount " +
                                          "WHERE TicketId = @TicketId";
 
-                    SqlCommand updateCmd = new SqlCommand(updateQuery, Con);
+                    SqlCommand updateCmd = new SqlCommand(query, Con);
                     updateCmd.Parameters.AddWithValue("@FlightCode", flightCode);
                     updateCmd.Parameters.AddWithValue("@PassID", passengerId);
                     updateCmd.Parameters.AddWithValue("@PassName", passengerName);
@@ -272,11 +289,11 @@ namespace geoAirLines
                 else
                 {
                     // Insert the new ticket information in TicketTable
-                    string insertQuery = "INSERT INTO [dbo].[TicketTable] " +
+                    string query = "INSERT INTO [dbo].[TicketTable] " +
                                          "(TicketId, FlightCode, PassID, PassName, Passport, Gender, Nationality, PassAdd, Amount) " +
                                          "VALUES (@TicketId, @FlightCode, @PassID, @PassName, @Passport, @Gender, @Nationality, @PassAdd, @Amount)";
 
-                    SqlCommand insertCmd = new SqlCommand(insertQuery, Con);
+                    SqlCommand insertCmd = new SqlCommand(query, Con);
                     insertCmd.Parameters.AddWithValue("@TicketId", ticketId);
                     insertCmd.Parameters.AddWithValue("@FlightCode", flightCode);
                     insertCmd.Parameters.AddWithValue("@PassID", passengerId);
@@ -317,15 +334,7 @@ namespace geoAirLines
 
         private void button2_Click(object sender, EventArgs e)
         {
-            TicketID.Text = "";
-            PassengerAdd.Text = "";
-            PassengerID.Text = "";
-            PassengerName.Text = "";
-            FlightCode.Text = "";
-            Nationality.Text = "";
-            Gender.Text = "";
-            Passport.Text = "";
-            Amount.Text = "";
+            ResetGrid();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -384,6 +393,13 @@ namespace geoAirLines
             {
                 Con.Close();
             }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Home home = new Home();
+            home.Show();
+            this.Hide();
         }
     }
 }
