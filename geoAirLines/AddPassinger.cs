@@ -19,7 +19,7 @@ namespace geoAirLines
         {
             InitializeComponent();
         }
-        SqlConnection Con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\iliat\OneDrive\Документы\AirLineDb.mdf;Integrated Security=True;Connect Timeout=30;Encrypt=false");
+        private SqlConnection Con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\iliat\OneDrive\Документы\AirLinesDb.mdf;Integrated Security=True;Connect Timeout=30");
 
         private void label10_Click(object sender, EventArgs e)
         {
@@ -36,7 +36,7 @@ namespace geoAirLines
                 try
                 {
                     Con.Open();
-                    string query = "INSERT INTO [dbo].[PassenegerTb](PassId, PassName, Passport, PassAd, Nationality, Gender) " +
+                    string query = "INSERT INTO [dbo].[PassengerTb](PassId, PassName, Passport, PassAd, Nationality, Gender) " +
                     "VALUES (@PassId, @PassName, @Passport, @PassAd, @Nationality, @Gender)";
 
                     SqlCommand cmd = new SqlCommand(query, Con);
@@ -79,7 +79,7 @@ namespace geoAirLines
 
         private void button6_Click(object sender, EventArgs e)
         {
-            Home home= new Home();
+            Home home = new Home();
             home.Show();
             this.Hide();
         }

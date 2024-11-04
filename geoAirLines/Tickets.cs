@@ -16,7 +16,7 @@ namespace geoAirLines
     public partial class Tickets : Form
     {
 
-        private SqlConnection Con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\iliat\OneDrive\Документы\AirLineDb.mdf;Integrated Security=True;Connect Timeout=30;Encrypt=false");
+        private SqlConnection Con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\iliat\OneDrive\Документы\AirLinesDb.mdf;Integrated Security=True;Connect Timeout=30");
 
         private void FillPassenger()
         {
@@ -29,7 +29,7 @@ namespace geoAirLines
                 }
 
                 // Create the command to fetch passenger IDs
-                SqlCommand cmd = new SqlCommand("SELECT PassId FROM [dbo].[passenegerTb]", Con);
+                SqlCommand cmd = new SqlCommand("SELECT PassId FROM [dbo].[PassengerTb]", Con);
                 SqlDataReader rdr = cmd.ExecuteReader();
 
                 // Create a DataTable to hold the results
@@ -126,7 +126,7 @@ namespace geoAirLines
                 }
 
                 // Query to fetch the passenger details including address
-                string query = "SELECT PassName, Passport, Gender, Nationality, PassAd FROM [dbo].[passenegerTb] WHERE PassId=@PassId";
+                string query = "SELECT PassName, Passport, Gender, Nationality, PassAd FROM [dbo].[PassengerTb] WHERE PassId=@PassId";
                 SqlCommand cmd = new SqlCommand(query, Con);
                 cmd.Parameters.AddWithValue("@PassId", PassengerID.SelectedValue.ToString());
 

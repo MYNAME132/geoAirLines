@@ -19,12 +19,11 @@ namespace geoAirLines
         {
             InitializeComponent();
         }
-        private SqlConnection Con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\iliat\OneDrive\Документы\AirLineDb.mdf;Integrated Security=True;Connect Timeout=30;Encrypt=false");
-
+        private SqlConnection Con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\iliat\OneDrive\Документы\AirLinesDb.mdf;Integrated Security=True;Connect Timeout=30");
         private void FillPassengerGrid()
         {
             Con.Open();
-            string query = "select * from  [dbo].[passenegerTb]";
+            string query = "select * from  [dbo].[PassengerTb]";
             SqlDataAdapter sda = new SqlDataAdapter(query, Con);
             SqlCommandBuilder builder = new SqlCommandBuilder(sda);
             var ds = new DataSet();
@@ -60,7 +59,7 @@ namespace geoAirLines
                 try
                 {
                     Con.Open();
-                    string query = "delete from [dbo].[passenegerTb] where PassId=" + PassId.Text + ";";
+                    string query = "delete from [dbo].[PassengerTb] where PassId=" + PassId.Text + ";";
                     SqlCommand cmd = new SqlCommand(query, Con);
                     cmd.ExecuteNonQuery();
                     Con.Close();
@@ -101,7 +100,7 @@ namespace geoAirLines
                 Con.Open();
 
                 // Prepare the SQL update query
-                string query = "UPDATE [dbo].[PassenegerTb] " +
+                string query = "UPDATE [dbo].[PassengerTb] " +
                                "SET PassName=@PassName, Passport=@Passport, PassAd=@PassAd, Nationality=@Nationality, Gender=@Gender " +
                                "WHERE PassId=@PassId";
 
