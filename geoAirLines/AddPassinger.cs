@@ -49,12 +49,14 @@ namespace geoAirLines
 
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("passenger recorded succesfully");
-
-                    Con.Close();
                 }
                 catch (Exception Ex)
                 {
                     MessageBox.Show(Ex.Message);
+                }
+                finally
+                {
+                    Con.Close();
                 }
 
             }

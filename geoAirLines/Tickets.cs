@@ -349,7 +349,6 @@ namespace geoAirLines
                 string query = "delete from [dbo].[TicketTable] where TicketId=" + TicketID.Text + ";";
                 SqlCommand cmd = new SqlCommand(query, Con);
                 cmd.ExecuteNonQuery();
-                Con.Close();
                 MessageBox.Show("deleted succsefully");
                 FillTocketsGrid();
 
@@ -357,6 +356,10 @@ namespace geoAirLines
             catch (Exception Ex)
             {
                 MessageBox.Show(Ex.Message);
+            }
+            finally
+            {
+                Con.Close();
             }
         }
 

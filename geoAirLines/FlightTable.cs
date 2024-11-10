@@ -99,13 +99,17 @@ namespace geoAirLines
                     string query = "delete from [dbo].[FlightTb] where FlightCode=" + FlightCode.Text + ";";
                     SqlCommand cmd = new SqlCommand(query, Con);
                     cmd.ExecuteNonQuery();
-                    Con.Close();
+
                     MessageBox.Show("Flight deleted sucsesfully");
                     FillFlightGrid();
                 }
                 catch (Exception Ex)
                 {
                     MessageBox.Show(Ex.Message);
+                }
+                finally 
+                { 
+                    Con.Close(); 
                 }
 
             }
