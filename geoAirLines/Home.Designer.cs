@@ -41,11 +41,11 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Arial Narrow", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Red;
             label5.Location = new Point(395, -5);
             label5.Name = "label5";
-            label5.Size = new Size(22, 25);
+            label5.Size = new Size(24, 25);
             label5.TabIndex = 24;
             label5.Text = "x";
             label5.Click += label5_Click;
@@ -68,7 +68,7 @@
             button1.FlatAppearance.BorderSize = 2;
             button1.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
             button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 0, 0);
-            button1.Font = new Font("SuperFrench", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 2);
+            button1.Font = new Font("Arial", 12F, FontStyle.Bold);
             button1.Location = new Point(112, 63);
             button1.Name = "button1";
             button1.Size = new Size(148, 61);
@@ -84,7 +84,7 @@
             button2.FlatAppearance.BorderSize = 2;
             button2.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
             button2.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 0, 0);
-            button2.Font = new Font("SuperFrench", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 2);
+            button2.Font = new Font("Arial", 12F, FontStyle.Bold);
             button2.Location = new Point(133, 130);
             button2.Name = "button2";
             button2.Size = new Size(117, 61);
@@ -100,7 +100,7 @@
             button3.FlatAppearance.BorderSize = 2;
             button3.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
             button3.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 0, 0);
-            button3.Font = new Font("SuperFrench", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 2);
+            button3.Font = new Font("Arial", 12F, FontStyle.Bold);
             button3.Location = new Point(133, 197);
             button3.Name = "button3";
             button3.Size = new Size(117, 61);
@@ -116,7 +116,7 @@
             button4.FlatAppearance.BorderSize = 2;
             button4.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
             button4.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 0, 0);
-            button4.Font = new Font("SuperFrench", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 2);
+            button4.Font = new Font("Arial", 12F, FontStyle.Bold);
             button4.Location = new Point(101, 264);
             button4.Name = "button4";
             button4.Size = new Size(176, 61);
@@ -132,7 +132,7 @@
             button5.FlatAppearance.BorderSize = 2;
             button5.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
             button5.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 0, 0);
-            button5.Font = new Font("SuperFrench", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 2);
+            button5.Font = new Font("Arial", 12F, FontStyle.Bold);
             button5.Location = new Point(133, 331);
             button5.Name = "button5";
             button5.Size = new Size(117, 61);
@@ -148,7 +148,7 @@
             button6.FlatAppearance.BorderSize = 2;
             button6.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
             button6.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 0, 0);
-            button6.Font = new Font("SuperFrench", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 2);
+            button6.Font = new Font("Arial", 12F, FontStyle.Bold);
             button6.Location = new Point(-6, -4);
             button6.Name = "button6";
             button6.Size = new Size(77, 38);

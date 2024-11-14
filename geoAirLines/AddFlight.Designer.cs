@@ -53,7 +53,7 @@
             button4.FlatAppearance.BorderSize = 2;
             button4.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
             button4.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 0, 0);
-            button4.Font = new Font("SuperFrench", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 2);
+            button4.Font = new Font("Arial", 12F, FontStyle.Bold);
             button4.Location = new Point(274, 329);
             button4.Name = "button4";
             button4.Size = new Size(117, 61);
@@ -65,11 +65,11 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Font = new Font("Arial Narrow", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label10.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Red;
             label10.Location = new Point(511, -3);
             label10.Name = "label10";
-            label10.Size = new Size(22, 25);
+            label10.Size = new Size(24, 25);
             label10.TabIndex = 60;
             label10.Text = "x";
             label10.Click += label10_Click;
@@ -99,7 +99,7 @@
             button1.FlatAppearance.BorderSize = 2;
             button1.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
             button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 0, 0);
-            button1.Font = new Font("SuperFrench", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 2);
+            button1.Font = new Font("Arial", 12F, FontStyle.Bold);
             button1.Location = new Point(138, 329);
             button1.Name = "button1";
             button1.Size = new Size(117, 61);
@@ -213,7 +213,7 @@
             button6.FlatAppearance.BorderSize = 2;
             button6.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
             button6.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 0, 0);
-            button6.Font = new Font("SuperFrench", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 2);
+            button6.Font = new Font("Arial", 12F, FontStyle.Bold);
             button6.Location = new Point(-5, -3);
             button6.Name = "button6";
             button6.Size = new Size(77, 38);

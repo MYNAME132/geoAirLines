@@ -14,7 +14,7 @@ namespace geoAirLines
     public partial class AddFlight : Form
     {
 
-        private SqlConnection Con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\iliat\OneDrive\Документы\AirLinesDb.mdf;Integrated Security=True;Connect Timeout=30");
+        private SqlConnection Con = DatabaseConnection.GetConnection();
         public AddFlight()
         {
             InitializeComponent();
