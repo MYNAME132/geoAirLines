@@ -15,7 +15,8 @@ namespace geoAirLines
     public partial class FlightTable : Form
     {
 
-        private SqlConnection Con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\iliat\OneDrive\Документы\AirLinesDb.mdf;Integrated Security=True;Connect Timeout=30"); private void label10_Click(object sender, EventArgs e)
+        private SqlConnection Con = DatabaseConnection.GetConnection(); 
+        private void label10_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
